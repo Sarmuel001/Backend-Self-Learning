@@ -1,6 +1,6 @@
 const fs = require('fs');
 const http = require('http'); //we added this one cos it is needed on server module which is line 26
-
+const url = require('url')
 
 // File system Module - Part of BAckend Lesson 1
 
@@ -30,39 +30,51 @@ const http = require('http'); //we added this one cos it is needed on server mod
 //     console.log(req.url)
 //     res.end('Hello from the server')
 // })
-// server.listen(8000, '127.0.0.1')
+// server.listen(8000, '127.0.0.1')  //we created a server here
+
 
 
 ////////////// the next thing to talk about is ROUTING
 //ROUTING - routing is like you want to navigate path
-const server = http.createServer((req, res)=>{
-    const pathName =  req.url;
-    if(pathName === '/' || pathName === '/home'){
-        res.writeHead(200,{
-            'Content-type': 'text/html'
-        })
-        res.end(<h1>'Welcome Home, Glad you are here'</h1>)
-    } else if(pathName === '/shop'){
-        res.end('Shop items')
-    } else{
-        res.writeHead(404);
-        res.end('Error 404');
-    }
-    res.end('Hello from the server')
+// const server = http.createServer((req, res)=>{
+//     const pathName =  req.url;
+//     if(pathName === '/' || pathName === '/home'){
+//         res.writeHead(200,{
+//             'Content-type': 'text/html'
+//         })
+//         res.end(<h1>'Welcome Home, Glad you are here'</h1>)
+//     } else if(pathName === '/shop'){
+//         res.end('Shop items')
+//     } else{
+//         res.writeHead(404);
+//         res.end('Error 404');
+//     }
+//     res.end('Hello from the server')
+// })
+// server.listen(8000, '127.0.0.1')
+
+// const data = fs.readFileSync(`${__dirname}./questions.json`, 'utf-8');
+//const objData = JSON.parse(data)    //we are just going to read the file inside the block where api is declared by just calling res.end(data)
+                                    // Note this code works the same with the one declared or  read inside the code, but this one just read only once
+
+const server2 = http.createServer((req, res)=>{
+const pathName = req.url;
+if(pathName === '/' || pathName === ' '){
+    res.writeHead(200, {'Content-type':'text/html',})
+    res.end('<h1>welcome home</h1>')
+} else if(pathName === '/result'){
+res.end('RESULT')  
+} else if(pathName === '/shop'){
+    res.end('Welcome to shop')
+}else if(pathName === '/api'){
+    fs.readFile('./questions.json', 'utf-8', (err, data) =>{
+        const jFile = JSON.parse(data);
+        console.log(data)
+        res.end(data)        // if we cant open the json api file here we can also do that with readFileSync but its going to be outside of the block. check line 55
+    })
+}else{
+    res.end('Go away Boss')
+}
 })
-server.listen(8000, '127.0.0.1')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+console.log('We are the world')
+server2.listen(5000, '127.0.0.1')
