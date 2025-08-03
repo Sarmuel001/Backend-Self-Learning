@@ -57,6 +57,7 @@ const url = require('url')
 //const objData = JSON.parse(data)    //we are just going to read the file inside the block where api is declared by just calling res.end(data)
                                     // Note this code works the same with the one declared or  read inside the code, but this one just read only once
 
+
 const server2 = http.createServer((req, res)=>{
 const pathName = req.url;
 if(pathName === '/' || pathName === ' '){

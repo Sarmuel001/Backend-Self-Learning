@@ -2,7 +2,8 @@
   "name": "nodejs-class",
   "version": "1.0.0",
   "description": "NodeJs Learning Class",
-  "main": "app.js",
+
+  "main": "event-loop.js",
   "scripts": {
     "sam": "nodemon app.js"
   },
