@@ -64,3 +64,15 @@ Server.on('close', (req, res)=>{
 Server.listen(8000,'127.0.0.1',()=>{
     console.log('Waiting for the server')
 })
+
+const fs = require('fs');
+
+const readable = fs.createReadStream('largefile.txt', 'utf8');
+
+readable.on('data', (chunk) => {
+  console.log('Received chunk:', chunk);
+});
+
+readable.on('end', () => {
+  console.log('Finished reading');
+});
