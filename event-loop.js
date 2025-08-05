@@ -52,10 +52,10 @@ Server.on('request', (req, res)=>{
     console.log(req.url)
     res.end('Request recieved')
 })
+
 Server.on('request', (req, res)=>{
     console.log("New Request")
 })
-
 
 Server.on('close', (req, res)=>{
     console.log("Server successfully closed");
