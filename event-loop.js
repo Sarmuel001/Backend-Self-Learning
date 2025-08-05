@@ -65,14 +65,31 @@ Server.listen(8000,'127.0.0.1',()=>{
     console.log('Waiting for the server')
 })
 
+// const fs = require('fs');
+
+// const readable = fs.createReadStream('largefile.txt', 'utf8');
+
+// readable.on('data', (chunk) => {
+//   console.log('Received chunk:', chunk);
+// });
+
+// readable.on('end', () => {
+//   console.log('Finished reading');
+// });
+
 const fs = require('fs');
+const { once } = require('events');
 
-const readable = fs.createReadStream('largefile.txt', 'utf8');
+async function streamToString(path) {
+  const readable = fs.createReadStream(path, 'utf8');
+  let data = '';
 
-readable.on('data', (chunk) => {
-  console.log('Received chunk:', chunk);
-});
+  readable.on('data', chunk => data += chunk);
 
-readable.on('end', () => {
-  console.log('Finished reading');
-});
+  await once(readable, 'end');  // wait for 'end' event
+  return data;
+}
+
+streamToString('file.txt')
+  .then(console.log)
+  .catch(console.error);
