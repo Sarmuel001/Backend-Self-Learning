@@ -2,7 +2,6 @@
   "name": "nodejs-class",
   "version": "1.0.0",
   "description": "NodeJs Learning Class",
-
   "main": "event-loop.js",
   "scripts": {
     "sam": "nodemon app.js"
@@ -18,6 +17,8 @@
   },
   "homepage": "https://github.com/Sarmuel001/Backend-Self-Learning#readme",
   "dependencies": {
+    "express": "^5.1.0",
+    "express5": "^1.0.0",
     "slugify": "^1.6.6"
   },
   "devDependencies": {
