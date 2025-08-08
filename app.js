@@ -66,7 +66,9 @@ if(pathName === '/' || pathName === ' '){
 } else if(pathName === '/result'){
 res.end('RESULT')  
 } else if(pathName === '/shop'){
-    res.end('Welcome to shop')
+    res.end('Welcome to shop')} 
+  else if(pathName === '/good'){
+    res.end('Welcome to good')
 }else if(pathName === '/api'){
     fs.readFile('./questions.json', 'utf-8', (err, data) =>{
         const jFile = JSON.parse(data);
@@ -78,4 +80,4 @@ res.end('RESULT')
 }
 })
 console.log('We are the world')
-server2.listen(5000, '127.0.0.1')
+server2.listen(3000, '127.0.0.1')
