@@ -1,5 +1,5 @@
 const fs = require('fs');
-const http = require('http'); //we added this one cos it is needed on server module which is line 26
+const http = require('http').createServer(); //we added this one cos it is needed on server module which is line 26
 const url = require('url')
 
 // File system Module - Part of BAckend Lesson 1
